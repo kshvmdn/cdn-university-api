@@ -21,8 +21,6 @@ def parse(response):
     prog_info = {}
     if soup.find('h1', class_='template-heading'):
         prog_title = soup.find('h1', class_='template-heading').string
-        # prog_school = soup.find('h2', class_='template-subheading').string
-    prog_info['program'] = prog_title
 
     prog_info['overview'], prog_info['admission'], prog_info['requirements'] = \
         {}, {}, {}
@@ -31,8 +29,9 @@ def parse(response):
         overview = soup.find('div', id='overview')
         for tr in overview.find('table').find_all('tr'):
             key = tr.find_all('td')[0].string.lower().replace(' ', '_')
-            value = tr.find_all('td')[1].text.strip()
+            value = tr.find_all('td')[1].text.strip().replace('\n', ', ')
             prog_info['overview'][key] = value
+        prog_info['overview']['title'] = prog_title
 
         admission = soup.find('div', id='admission')
         for h3 in admission.find(class_='tabbed-subsection').find_all('h3'):
@@ -52,7 +51,8 @@ def parse(response):
             for li in req.find_all('li'):
                 prereqs.append(li.string)
         prog_info['requirements'][key] = prereqs
-    return prog_info
+        return prog_info
+    return None
 
 if __name__ == '__main__':
     uoft_cs_code, uw_afm_code = '203', '301'
