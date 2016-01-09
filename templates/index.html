@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block index %}
+    <div class="container">
+        <div class="hero">
+            <h1>eINFO API <small>Interface with Canadian post-secondary data.</small></h1>
+        </div>
+        <div class="content">
+            <p class="lead">This is an open source project. Contribute <a href="https://github.com/kshvmdn/einfo-api" target="_blank">here</a>.</p>
+            <h3>Usage</h3>
+            <p>Access the API endpoint with the eINFO program <samp>code</samp> encoded as query parameter <code>c</code>.</p>
+            <pre><a href="/api?c=301">/api?c={code}</a></pre>
+            <p>Find the <samp>code</samp> parameter through the eINFO URL, i.e. <code>http://www.electronicinfo.ca/programs/<strong>203</strong>/</code>.</p>
+        </div>
+    </div>
+{% endblock index %}
