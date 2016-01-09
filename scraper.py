@@ -52,11 +52,9 @@ def parse(response):
             for li in req.find_all('li'):
                 prereqs.append(li.string)
         prog_info['requirements'][key] = prereqs
-    pprint.pprint(prog_info, indent=2)
+    return prog_info
 
 if __name__ == '__main__':
-    
-uoft_cs = '203'
-uw_afm = '301'
-
-scrape(uw_afm)
+    uoft_cs_code, uw_afm_code = '203', '301'
+    uoft_cs = scrape(uoft_cs_code)
+    print(json.dumps(uoft_cs, indent=2))
