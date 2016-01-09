@@ -30,5 +30,23 @@ def parse(response):
             key = tr.find_all('td')[0].string.lower().replace(' ', '_')
             value = tr.find_all('td')[1].text.strip()
             prog_info['overview'][key] = value
-    pprint.pprint(prog_info)
+        admission = soup.find('div', id='admission')
+        for h3 in admission.find(class_='tabbed-subsection').find_all('h3'):
+            key = h3.text.lower().replace(' ', '_')
+            value = []
+            while h3.next_sibling is not None and\
+                    (h3.next_sibling.name is None or h3.next_sibling.name == 'p'):
+                h3 = h3.next_sibling
+                print(type(h3))
 
+                if h3.string is not None and h3.string.strip() is not '':
+                    value.append(h3.text)
+            print('---')
+            # prog_info['admission'][key] = value
+    pprint.pprint(prog_info, indent=2)
+
+
+uoft_cs = '203'
+uw_afm = '301'
+
+scrape(uw_afm)
