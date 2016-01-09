@@ -44,9 +44,18 @@ def parse(response):
                 if sib.next_sibling is None or sib.next_sibling.name == 'h3':
                     break
             prog_info['admission'][key] = value
+
+        req = soup.find('div', id='requirements').find('div', class_='tabbed-subsection')
+        key = req.find('h4').string.lower()
+        prereqs = []
+        if req.find('ul'):
+            for li in req.find_all('li'):
+                prereqs.append(li.string)
+        prog_info['requirements'][key] = prereqs
     pprint.pprint(prog_info, indent=2)
 
-
+if __name__ == '__main__':
+    
 uoft_cs = '203'
 uw_afm = '301'
 
