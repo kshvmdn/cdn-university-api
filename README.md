@@ -1,5 +1,5 @@
 # eINFO Scraper
-RESTful API for Canadian post-secondary data from [eINFO](http://www.electronicinfo.ca/programs/).
+Web API for Canadian post-secondary data from [eINFO](http://www.electronicinfo.ca/programs/).
 
 ### Prerequisites
 Python 3
