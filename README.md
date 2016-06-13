@@ -1,19 +1,28 @@
-# eINFO Scraper
-Web API for Canadian post-secondary data from [eINFO](http://www.electronicinfo.ca/programs/).
+## cdn-university-api
+Web API for [eINFO](http://www.electronicinfo.ca/programs/), Canadian university program data.
 
-### Prerequisites
-Python 3
+### Setup
+
+- Clone repo, install requirements.
+  
+  ```sh
+  $ git clone https://github.com/kshvmdn/cdn-university-api.git && cd cdn-university-api
+  ```
+  
+  ```sh
+  $ pip install -r ./requirements.txt
+  ```
+
+- Run app, should be listening at `localhost:8000`.
+
+  ```sh
+  $ python ./api.py
+  ```
 
 ### Usage
-Fork/clone and navigate to project. Install requirements with `pip3 install -r requirements.txt`. Run with `python 3 einfo.py`. 
 
-Open `127.0.0.1:8000` in your browser. Access the API endpoint with the eINFO program code encoded as query parameter. Find the eINFO program code at the end of your URL. 
+#### Output format 
 
-```
-http://www.electronicinfo.ca/programs/203/ -> 127.0.0.1:8000/api?c=203
-```
-
-### Output format 
 ```js
 {
   "data": {
@@ -43,3 +52,11 @@ http://www.electronicinfo.ca/programs/203/ -> 127.0.0.1:8000/api?c=203
   }
 }
 ```
+
+#### Endpoints
+
+- Use the eINFO program ID (from the URL, see below) to retrive data for that program.
+
+  ```
+  http://www.electronicinfo.ca/programs/203/ -> http://localhost:8000/api/203
+  ```
